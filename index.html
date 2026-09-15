@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinis Ferreira | Robotics, AI & Control Engineer</title>
+  
+  <!-- Fontes & Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #94a3b8;
+      --heading: #f8fafc;
+      --accent: #38bdf8;
+      --tag-bg: #0284c720;
+      --tag-text: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 0 1.5rem; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3.5rem 0; }
+    
+    /* Header / Hero */
+    header { margin-bottom: 3.5rem; }
+    .hero-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.8rem;
+    }
+    .profile-pic {
+      width: 110px;
+      height: 110px;
+      min-width: 110px;
+      min-height: 110px;
+      max-width: 110px;
+      max-height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+    .hero-text { flex: 1; }
+    h1 { font-size: 2.4rem; color: var(--heading); font-weight: 700; margin-bottom: 0.3rem; }
+    h2.role { font-size: 1.15rem; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; }
+    .meta-info { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.9rem; margin-bottom: 1.2rem; color: var(--text); }
+    .meta-info span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    p.summary { font-size: 1rem; line-height: 1.65; margin-bottom: 1.5rem; }
+
+    /* Action Buttons */
+    .links-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--heading); background: var(--card-bg); border: 1px solid var(--border);
+      padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.88rem; font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary { background: #0284c7; border-color: #0284c7; color: #fff; }
+    .btn-primary:hover { background: #0369a1; border-color: #0369a1; color: #fff; }
+
+    /* Section Headings */
+    h3.section-title { font-size: 1.45rem; color: var(--heading); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin: 3rem 0 1.5rem; }
+    
+    /* Timeline Items (Experience / Education) */
+    .timeline-item { margin-bottom: 1.8rem; }
+    .timeline-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.2rem; }
+    .item-title { font-size: 1.1rem; color: var(--heading); font-weight: 600; }
+    .item-date { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+    .item-subtitle { font-size: 0.92rem; color: var(--text); margin-bottom: 0.4rem; font-style: italic; }
+
+    /* Project Cards (Full Width Showcase) */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .project-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-media video,
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .project-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .project-info h4 {
+      font-size: 1.25rem;
+      color: var(--heading);
+    }
+    .project-info p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .skills-wrapper { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    gap: 1.5rem; 
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { background: var(--tag-bg); color: var(--tag-text); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 500; }
+    .card-link { color: var(--accent); text-decoration: none; font-size: 0.88rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .card-link:hover { text-decoration: underline; }
+
+    /* Skills */
+    .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .skill-category h5 { color: var(--heading); font-size: 1rem; margin-bottom: 0.5rem; }
+    .skill-category ul { list-style: none; }
+    .skill-category li { font-size: 0.9rem; margin-bottom: 0.3rem; color: var(--text); }
+
+    /* Mobile Responsive */
+    @media (max-width: 640px) {
+      .hero-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+      }
+      .meta-info, .links-bar {
+        justify-content: center;
+      }
+    }
+
+
+    /* Cartão de Destaque para a Dissertação */
+    .thesis-card {
+    background: linear-gradient(145deg, #1e293b 0%, #172033 100%);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    margin-bottom: 2.5rem;
+    }
+
+    .thesis-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    width: fit-content;
+    }
+
+    .thesis-body {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    }
+
+    .thesis-body h4 {
+    font-size: 1.35rem;
+    color: var(--heading);
+    line-height: 1.4;
+    }
+
+    .thesis-key-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+    }
+
+    .thesis-key-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.5;
+    }
+
+    .thesis-key-points li i {
+    color: var(--accent);
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header / Hero -->
+    <header>
+      <div class="hero-wrapper">
+        <img src="profile.png" alt="Dinis Ferreira" class="profile-pic">
+        
+        <div class="hero-text">
+          <h1>Dinis Ferreira</h1>
+          <h2 class="role">Electrical & Computer Engineer | Robotics, AI & Control</h2>
+          
+          <div class="meta-info">
+            <span><i class="fas fa-location-dot"></i> Coimbra, Portugal (Willing to relocate)</span>
+            <span><i class="fas fa-passport"></i> EU Citizen</span>
+          </div>
+
+          <p class="summary">
+            Electrical and Computer Engineering Master's graduate from the University of Coimbra, specializing in Robotics, Control, and AI. Experience developing predictive maintenance systems, industrial signal processing, and dynamic control in collaboration with industry partners. Fluent in English, native Portuguese, and currently learning German.
+          </p>
+
+          <div class="links-bar">
+            <a href="mailto:dinisantunes26@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Contact Me</a>
+            <a href="https://github.com/yourusername" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="Dinis_Ferreira_Robotics_AI_Engineer.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Download PDF CV</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Research & Academic Experience -->
+    <h3 class="section-title">Research & Academic Experience</h3>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">MSc Thesis Researcher: Fault Detection in Electric Motors</span>
+        <span class="item-date">Oct 2025 – Present</span>
+      </div>
+      <div class="item-subtitle">University of Coimbra & OnControl</div>
+      <p>Developing predictive maintenance frameworks using advanced vibration signal processing and AI algorithms to detect and classify early-stage electrical motor failures in industrial operating environments.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">Research Fellow — SOMIPS Project</span>
+        <span class="item-date">May 2026 – Present</span>
+      </div>
+      <div class="item-subtitle">University of Coimbra & OnControl (EU FEDER / Centro 2030)</div>
+      <p>Contributing to advanced industrial process control and predictive maintenance architectures designed to optimize the operating performance and thermal efficiency of biomass incineration plants.</p>
+    </div>
+
+    <!-- Professional Experience -->
+    <h3 class="section-title">Professional Experience</h3>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">Robotics & Programming Instructor</span>
+        <span class="item-date">2024 – 2025</span>
+      </div>
+      <div class="item-subtitle">RoboThink</div>
+      <p>Planned and delivered practical robotics, mechatronics, and logic programming workshops for students aged 6 to 14. Mentored students through mechanical assembly, sensor integration, and weekly algorithmic problem-solving challenges.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">IT & Digital Literacy Tutor for Seniors</span>
+        <span class="item-date">2024 – 2026</span>
+      </div>
+      <div class="item-subtitle">ASSP</div>
+      <p>Conducted digital literacy courses promoting technological inclusion for seniors. Adapted complex technical concepts into accessible lessons on basic computing, internet navigation, and cybersecurity, demonstrating strong patience and tailored communication.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">Technical Draftsman</span>
+        <span class="item-date">2022 – 2025</span>
+      </div>
+      <div class="item-subtitle">ToogoCasa — Projetos e Construção</div>
+      <p>Executed high-precision 2D technical drawings and engineering schematics using AutoCAD. Interpreted complex architectural blueprints and ensured rigorous geometric compliance across diverse construction and specialty projects.</p>
+    </div>
+
+
+    <!-- Master's Dissertation Spotlight Section -->
+    <h3 class="section-title">Master's Dissertation</h3>
+
+    <div class="thesis-card">
+      <div class="thesis-body">
+        <span class="thesis-badge"><i class="fas fa-graduation-cap"></i> Flagship Research Project</span>
+        
+        <h4>Detection of Faults in Electric Motors using Sensors</h4>
+        <div class="item-subtitle" style="margin-bottom: 0.8rem;">
+          University of Coimbra & OnControl | In collaboration with the EU-funded SOMIPS project
+        </div>
+
+        <div style="background: rgba(15, 23, 42, 0.6); border-left: 3px solid var(--accent); padding: 1.1rem 1.3rem; border-radius: 0 8px 8px 0; margin-bottom: 1.2rem;">
+          <strong style="color: var(--heading); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">Abstract</strong>
+          <p style="font-size: 0.91rem; line-height: 1.65; margin-bottom: 0;">
+            In the context of Industry 4.0, predictive maintenance plays a fundamental role to ensuring the operational reliability of such critical assets as electrical motors, since faults on these machines can halt production lines and consequently lead to significant economic losses. This study explores the challenges of an autonomous condition monitoring framework using vibration analysis, progressively addressing the limitations of conventional diagnostic techniques. The work begins with the mathematical formulation for integration in the Frequency Domain, in order to extract the velocity and displacement signals from the raw acceleration signal. Traditional methods for detection, such as the ISO 20816-1 standard and spectra comparison were tested and evaluated on their robustness, as well as diagnostic techniques based on signal processing. To eliminate the need for manual inspections and expert knowledge, Artificial intelligence (AI) based algorithms were implemented, comparing traditional Machine Learning (ML) models, utilizing statistical and spectral features, to state-of-the-art 1D Deep Learning (DL) architectures. Experimental results establish DL models as the superior approach compared to the traditional ML, achieving 100% accuracy for clean signals and close to 99.5% for artificially noised signals. These models present an inference time lower than the acquisition time and reduced memory overhead, exhibiting the viability for real-time execution on industrial microcontrollers. Therefore, by means of this approach, it is possible to transition from reactive maintenance to autonomous predictive maintenance, offering a scalable solution for monitoring the integrity of the assets in real time through Edge AI.
+          </p>
+        </div>
+
+        <ul class="thesis-key-points">
+          <li>
+            <i class="fas fa-check"></i>
+            <span><strong>Frequency-Domain Signal Processing:</strong> Formulated mathematical integration to compute velocity and displacement profiles from raw accelerometer streams, benchmarking against ISO 20816-1 industrial thresholds.</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span><strong>ML vs. 1D Deep Learning Benchmark:</strong> Extracted statistical and spectral features for classical models (KNN, SVM, RF, XGBoost) and compared them against deep time-series networks (CNN-LSTM, InceptionTime) under severe Gaussian noise injection.</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span><strong>Edge AI & Microcontroller Viability:</strong> Demonstrated inference latencies strictly below acquisition windows with reduced memory footprint for real-time execution on industrial hardware.</span>
+          </li>
+        </ul>
+
+        <div>
+          <div class="tags" style="margin: 0.8rem 0 0.5rem 0;">
+            <span class="tag">Vibration Analysis</span>
+            <span class="tag">Signal Processing </span>
+            <span class="tag">Preditive Maintenance </span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Edge AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Featured Projects -->
+    <h3 class="section-title">Featured Projects</h3>
+    <div class="projects-list">
+
+      <!-- Project 1: Roundabout Tracking Video -->
+      <div class="project-card">
+        <div class="project-media">
+          <video src="assets/roundabout_traffic.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="project-info">
+          <div>
+            <h4>UAV Traffic Monitoring & Gate Flow Analytics</h4>
+            <p>
+              Engineered an automated end-to-end perception system for drone-captured roundabout footage. Fine-tuned YOLOv8s on aerial imagery (RAIVD) to achieve 0.892 mAP50-95, integrated ByteTrack for persistent multi-object tracking, and implemented polygon-based spatial analysis (Shapely) with an automated dashboard rendering trajectory counts, waiting times, and gate flows in real time.
+            </p>
+          </div>
+          <div>
+            <div class="tags">
+              <span class="tag">YOLOv8s</span>
+              <span class="tag">ByteTrack</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">OpenCV / Shapely</span>
+              <span class="tag">Real-Time Analytics</span>
+            </div>
+            <a href="https://github.com/yourusername" target="_blank" class="card-link" style="margin-top: 0.5rem; display: inline-flex;"><i class="fab fa-github"></i> View Repository & Video &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Two-Wheeled Self-Balancing Robot -->
+      <div class="project-card">
+        <div class="project-media">
+          <video src="assets/self_balancing_robot.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="project-info">
+          <div>
+            <h4>State-Space LQR Control for Two-Wheeled Self-Balancing Robot</h4>
+            <p>
+              Derived the nonlinear dynamic equations of motion for an inverted pendulum robot on wheels and linearized the system around the upright equilibrium. Designed and tuned a discrete Linear Quadratic Regulator (LQR) in MATLAB/Simulink, implemented sensor fusion via a Complementary Filter (accelerometer + gyroscope), and successfully deployed the closed-loop controller onto physical MinSeg hardware for real-time stabilization and linear trajectory tracking.
+            </p>
+          </div>
+          <div>
+            <div class="tags">
+              <span class="tag">Control Theory</span>
+              <span class="tag">State-Space LQR</span>
+              <span class="tag">MATLAB / Simulink</span>
+              <span class="tag">Sensor Fusion</span>
+              <span class="tag">Hardware Deployment</span>
+            </div>
+            <a href="https://github.com/yourusername" target="_blank" class="card-link" style="margin-top: 0.5rem; display: inline-flex;"><i class="fab fa-github"></i> View Repository & Data &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Project: Robotic Drummer Mechatronic Arm -->
+      <div class="project-card">
+        <div class="project-media">
+          <video src="assets/drumming_arm.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="project-info">
+          <div>
+            <h4>Robotic Drummer Arm & Interactive Python HMI</h4>
+            <p>
+              Designed, built, and programmed a 3-DOF mechatronic arm to emulate natural drumming biomechanics. Implemented cubic and quintic polynomial trajectory interpolation on an Arduino UNO to generate smooth joint motions (elbow swing and wrist whip), paired with an interactive CustomTkinter Python GUI for real-time serial parameter tuning (BPM, volume, and stroke styles). Validated temporal accuracy within 30 ms via audio peak analysis.
+            </p>
+          </div>
+          <div>
+            <div class="tags">
+              <span class="tag">Mechatronics</span>
+              <span class="tag">Arduino C++</span>
+              <span class="tag">Trajectory Planning</span>
+              <span class="tag">Python (GUI / Serial)</span>
+              <span class="tag">Signal Validation</span>
+            </div>
+            <div style="display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 0.6rem;">
+              <a href="https://github.com/yourusername" target="_blank" class="card-link"><i class="fab fa-github"></i> View Code</a>
+              <a href="https://www.youtube.com/watch?v=Q98Qpc1bQ8M" target="_blank" class="card-link"><i class="fas fa-play-circle"></i> Watch Full 2-Min Demo &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Education -->
+    <h3 class="section-title">Education</h3>
+    
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">MSc in Electrical and Computer Engineering</span>
+        <span class="item-date">Set 2024 – Set 2026 </span>
+      </div>
+      <div class="item-subtitle">University of Coimbra — Specialization in Robotics, Control & AI</div>
+      <p>Specialized cycle focused on mobile robotics, robotic manipulators and arm kinematics, advanced control systems, Machine Learning and Deep Learning architectures, classical and deep computer vision, and industrial automation pipelines (EQF Level 7).</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="item-title">BSc in Electrical and Computer Engineering</span>
+        <span class="item-date">2021 – 2024</span>
+      </div>
+      <div class="item-subtitle">University of Coimbra</div>
+      <p>Rigorous foundation in mathematics (calculus, linear algebra, differential equations) and physics (mechanics, electromagnetism), combined with core engineering topics in automatic control, signals and systems, electronics, programming, and introductory automation.</p>
+    </div>
+
+    <!-- Technical Skills -->
+    <h3 class="section-title">Technical Skills</h3>
+    
+    <div class="skills-wrapper">
+      <div class="skill-category">
+        <h5>Robotics & Control</h5>
+        <ul>
+          <li>State-Space Control & LQR / PID</li>
+          <li>Kalman Filtering (KF, EKF) & Sensor Fusion</li>
+          <li>Manipulator Kinematics & Jacobians</li>
+          <li>Path Planning (A*, Dijkstra) & Trajectory Generation</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h5>Signal Processing</h5>
+        <ul>
+          <li>FFT Spectral Estimation & Frequency-Domain Integration</li>
+          <li>Envelope Analysis & Cepstrum Analysis</li>
+          <li>Time-Frequency Analysis & Wavelet Transforms</li>
+          <li>Vibration Condition Monitoring & ISO Standards</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h5>Artificial Intelligence & ML</h5>
+        <ul>
+          <li>Classical ML (SVM, Random Forest, XGBoost, KNN)</li>
+          <li>Time-Series Deep Learning (CNN-LSTM, InceptionTime)</li>
+          <li>Deep RL (DQN, Double Dueling DQN)</li>
+          <li>Autoencoders, VAE & Latent Space Representation</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h5>Computer Vision</h5>
+        <ul>
+          <li>Classical CV </li>
+          <li>Feature Extraction & Optical Flow</li>
+          <li>Deep Object Detection (YOLOv8, v10, v11)</li>
+          <li>Multi-Object Tracking (ByteTrack, DeepSORT) & OpenCV</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h5>Design & Prototyping</h5>
+        <ul>
+          <li>Autodesk Fusion 360 & AutoCAD</li>
+          <li>Additive Manufacturing (3D Printing / FDM)</li>
+          <li>Engineering Materials Selection (PLA, PETG, ABS)</li>
+          <li>Rapid Prototyping & Mechatronic Assembly</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h5>Software & Systems</h5>
+        <ul>
+          <li>Python & C / C++</li>
+          <li>MATLAB & Simulink</li>
+          <li>Embedded Systems </li>
+          <li>Linux & Git </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
